@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
+import { Header, List } from 'semantic-ui-react';
 
 function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
@@ -19,18 +20,17 @@ function App() {
     // The root div for this component
     <div>
       {/* Heading for the Reactivities list */}
-      <h1>Reactivities</h1>
-
+      <Header as='h2' icon='users' content='Reactivities' />
       {/* Unordered list that will contain the activities */}
-      <ul>
+      <List>
         {/* Mapping over the "activities" state variable to generate list items */}
         {activities.map((activity: any) => (
           // Each list item has a unique "key" prop and displays the activity title
-          <li key={activity.id}>
+          <List.Item key={activity.id}>
             {activity.title}
-          </li>
+          </List.Item>
         ))}
-      </ul>
+      </List>
     </div>
   )
 }
