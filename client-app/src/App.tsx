@@ -9,11 +9,28 @@ function App() {
   // Using the "useEffect" hook to execute a side-effect in my component
   useEffect(() => {
     axios.get('http://localhost:5000/api/activities')
-  })
+      .then(Response => {
+        setActivities(Response.data)
+      })
+    // Empty Array of dependencies 
+  }, [])
 
   return (
+    // The root div for this component
     <div>
+      {/* Heading for the Reactivities list */}
       <h1>Reactivities</h1>
+
+      {/* Unordered list that will contain the activities */}
+      <ul>
+        {/* Mapping over the "activities" state variable to generate list items */}
+        {activities.map((activity: any) => (
+          // Each list item has a unique "key" prop and displays the activity title
+          <li key={activity.id}>
+            {activity.title}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
