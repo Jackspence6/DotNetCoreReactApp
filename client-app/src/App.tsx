@@ -8,7 +8,7 @@ function App() {
 
   // Using the "useEffect" hook to execute a side-effect in my component
   useEffect(() => {
-    axios.get('http://localhost:5000/api/activities')
+    axios.get('http://localhost:5001/api/activities')
       .then(Response => {
         setActivities(Response.data)
       })
