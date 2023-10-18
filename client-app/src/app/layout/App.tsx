@@ -8,6 +8,7 @@ import ActivityDashboard from '../../features/activities/dashboard/ActivityDashb
 function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
 
   // Using the "useEffect" hook to execute a side-effect in my component
   useEffect(() => {
@@ -18,13 +19,26 @@ function App() {
     // Empty Array of dependencies 
   }, [])
 
+  function handleSelectActivity(id: string) {
+    setSelectedActivity(activities.find(x => x.id === id));
+  }
+
+  function handleCancelSelectActivity() {
+    setSelectedActivity(undefined);
+  }
+
   return (
     // The root div for this component
     <>
       {/* Heading for the Reactivities list */}
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectedActivity={selectedActivity}
+          selectActivity={handleSelectActivity}
+          cancelSelectActivity={handleCancelSelectActivity}
+        />
       </Container>
     </>
   )
