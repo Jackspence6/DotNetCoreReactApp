@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Container, List } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
@@ -23,16 +24,7 @@ function App() {
       {/* Heading for the Reactivities list */}
       <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        {/* Unordered list that will contain the activities */}
-        <List>
-          {/* Mapping over the "activities" state variable to generate list items */}
-          {activities.map(activity => (
-            // Each list item has a unique "key" prop and displays the activity title
-            <List.Item key={activity.id}>
-              {activity.title}
-            </List.Item>
-          ))}
-        </List>
+        <ActivityDashboard activities={activities} />
       </Container>
     </>
   )
