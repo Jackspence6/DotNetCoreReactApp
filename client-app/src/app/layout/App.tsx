@@ -9,6 +9,7 @@ function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   // Using the "useEffect" hook to execute a side-effect in my component
   useEffect(() => {
@@ -27,17 +28,29 @@ function App() {
     setSelectedActivity(undefined);
   }
 
+  function handleFormOpen(id?: string) {
+    id ? handleSelectActivity(id) : handleCancelSelectActivity();
+    setEditMode(true);
+  }
+
+  function handleFormClose() {
+    setEditMode(false);
+  }
+
   return (
     // The root div for this component
     <>
       {/* Heading for the Reactivities list */}
-      <NavBar />
+      <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: "7em" }}>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
           selectActivity={handleSelectActivity}
           cancelSelectActivity={handleCancelSelectActivity}
+          editMode={editMode}
+          openForm={handleFormOpen}
+          closeForm={handleFormClose}
         />
       </Container>
     </>
