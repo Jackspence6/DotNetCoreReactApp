@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Header, List } from 'semantic-ui-react';
+import { Container, List } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 
@@ -19,20 +19,22 @@ function App() {
 
   return (
     // The root div for this component
-    <div>
+    <>
       {/* Heading for the Reactivities list */}
       <NavBar />
-      {/* Unordered list that will contain the activities */}
-      <List>
-        {/* Mapping over the "activities" state variable to generate list items */}
-        {activities.map(activity => (
-          // Each list item has a unique "key" prop and displays the activity title
-          <List.Item key={activity.id}>
-            {activity.title}
-          </List.Item>
-        ))}
-      </List>
-    </div>
+      <Container style={{ marginTop: "7em" }}>
+        {/* Unordered list that will contain the activities */}
+        <List>
+          {/* Mapping over the "activities" state variable to generate list items */}
+          {activities.map(activity => (
+            // Each list item has a unique "key" prop and displays the activity title
+            <List.Item key={activity.id}>
+              {activity.title}
+            </List.Item>
+          ))}
+        </List>
+      </Container>
+    </>
   )
 }
 
