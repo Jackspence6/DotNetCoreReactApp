@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Header, List } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
+import NavBar from './NavBar';
 
 function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
@@ -20,7 +21,7 @@ function App() {
     // The root div for this component
     <div>
       {/* Heading for the Reactivities list */}
-      <Header as='h2' icon='users' content='Reactivities' />
+      <NavBar />
       {/* Unordered list that will contain the activities */}
       <List>
         {/* Mapping over the "activities" state variable to generate list items */}
