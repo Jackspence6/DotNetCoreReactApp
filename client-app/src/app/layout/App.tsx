@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { v4 as uuid } from 'uuid';
+import agent from '../api/agent';
 
 function App() {
   // Creating a state variable called "activities" and a function to update it called "setActivities"
@@ -14,9 +14,14 @@ function App() {
 
   // Using the "useEffect" hook to execute a side-effect in my component
   useEffect(() => {
-    axios.get<Activity[]>('http://localhost:5001/api/activities')
+    agent.Activities.list()
       .then(Response => {
-        setActivities(Response.data)
+        let activities: Activity[] = [];
+        Response.forEach(activity => {
+          activity.date = activity.date.split('T')[0];
+          activities.push(activity);
+        })
+        setActivities(activities)
       })
     // Empty Array of dependencies 
   }, [])
