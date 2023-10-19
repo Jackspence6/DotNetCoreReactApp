@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     agent.Activities.list()
       .then(Response => {
-        let activities: Activity[] = [];
+        const activities: Activity[] = [];
         Response.forEach(activity => {
           activity.date = activity.date.split('T')[0];
           activities.push(activity);
@@ -68,10 +68,16 @@ function App() {
   }
 
   function handleDeleteActivity(id: string) {
-    setActivities([...activities.filter(x => x.id !== id)])
+    setSubmitting(true);
+    agent.Activities.delete(id).then(() => {
+      setActivities([...activities.filter(x => x.id !== id)]);
+      setSubmitting(false);
+    })
   }
 
-  if (loading) return <LoadingComponent content='Loading app' />
+  if (loading)
+    return <LoadingComponent content='Loading app'
+    />
 
   return (
     // The root div for this component
