@@ -6,8 +6,11 @@ import ActivityDashboard from '../../features/activities/dashboard/ActivityDashb
 import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
+import { useStore } from '../stores/store';
 
 function App() {
+  const { activityStore } = useStore();
+
   // Creating a state variable called "activities" and a function to update it called "setActivities"
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
@@ -85,6 +88,8 @@ function App() {
       {/* Heading for the Reactivities list */}
       <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: "7em" }}>
+        <h2>{activityStore.title}</h2>
+
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
