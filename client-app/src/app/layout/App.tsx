@@ -16,8 +16,7 @@ function App() {
   }, [activityStore])
 
   if (activityStore.loadingInitial)
-    return <LoadingComponent content='Loading app'
-    />
+    return <LoadingComponent content='Loading app...' />
 
   return (
     // The root div for this component
@@ -28,7 +27,7 @@ function App() {
         <ActivityDashboard />
       </Container>
     </>
-  )
+  );
 }
 
 export default observer(App);
