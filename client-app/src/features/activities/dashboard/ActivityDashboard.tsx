@@ -7,12 +7,13 @@ import LoadingComponent from "../../../app/layout/LoadingComponent";
 
 export default observer(function ActivityDashboard() {
     const { activityStore } = useStore();
+    const { loadActivities, activityRegistry } = activityStore;
 
     // Using the "useEffect" hook to execute a side-effect in my component
     useEffect(() => {
-        activityStore.loadActivities();
+        if (activityRegistry.size <= 1) loadActivities();
         // Empty Array of dependencies 
-    }, [activityStore])
+    }, [activityRegistry.size, loadActivities])
 
     if (activityStore.loadingInitial)
         return <LoadingComponent content='Loading app...' />
