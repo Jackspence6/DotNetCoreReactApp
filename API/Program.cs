@@ -25,6 +25,7 @@ if (app.Environment.IsDevelopment())
 // Added Cors Policy to middleware
 app.UseCors("CorsPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
