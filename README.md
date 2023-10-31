@@ -1,4 +1,5 @@
 # DotNetCoreReactApp
+[![Project Status: Work in Progress](https://img.shields.io/badge/Project%20Status-In%20Progress-yellow.svg)](https://github.com/Jackspence6/DotNetCoreReactApp)
 
 ## Description
 
